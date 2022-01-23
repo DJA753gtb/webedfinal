@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('./partials/head.ejs') %>
+
+
+<body>
+
+  <%- include('./partials/nav.ejs') %>
+
+  <div class="container">
+
+    <h1 class="text-center"><%= blog.heading   %></h1>
+    <h2 class="text-center"><span><%= blog.createdAt  %></span>/<span><%= blog.author  %></span></h2>
+    <hr>
+
+    <div class="row">
+      <div class="col-md-8 mx-auto py-4 shadow border border-primary ">
+        <%= blog.body  %>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

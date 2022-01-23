@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+  <body>
+
+
+
+    <%- include('./partials/nav.ejs') %>
+
+      <div class="container">
+        <button onclick="window.location.href = '/create'"
+          class="btn btn-primary text-capitalize mx-auto d-block mb-4 ">Create New Post </button>
+
+        <div class="row">
+
+
+          <% if (blogs.length===0){ %>
+
+            <P> No Blogs Yet.....</p>
+
+            <% } else { %>
+
+              <% blogs.forEach(blog=>{ %>
+
+
+
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header">
+                      <%= blog.heading %>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text">Writter : <%= blog.author %>
+                      </p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-end">
+                      <a href="" class="mr-4 text-danger"><i id=<%=blog._id %> onclick="deleteBtn(event)" class="far fa-trash-alt"></i></a>
+                      <a href="" class="text-warning"><i class="far fa-edit"></i></a>
+                    </div>
+                  </div>
+                </div>
+
+                <% }) %>
+
+
+                  <% } %>
+
+        </div>
+      </div>
+
+
+
+      <script>
+
+        const deleteBtn = (event) => {
+
+          event.preventDefault();
+          console.log(event.target.id);
+          const id = event.target.id;
+
+          const endpoint = `/blog/${id}`; 
+
+          fetch(endpoint,{
+            method: 'DELETE'
+          })
+          .then(response => response.json())
+          .then(data => window.location.href = '/editor')
+          .catch(err => console.log(err));
+
+
+
+
+        }
+
+      </script>
+
+
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+  </body>
+
+</html>
